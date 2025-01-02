@@ -18,6 +18,12 @@ $KEY"
   else
     echo "certificate for $DOMAIN changed, updating $OUTPUT_PATH"
     echo "$PEM" > $OUTPUT_PATH
+    echo "Restarting postfix"
+    docker service scale fcat_postfix=0
+    docker service scale fcat_postfix=1
+    echo "Restarting dovecot"
+    docker service scale fcat_dovecot=0
+    docker service scale fcat_dovecot=1
   fi
 fi
 

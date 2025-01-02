@@ -1,6 +1,6 @@
-FROM alpine:3.16
+FROM alpine:3.21
 
-RUN apk add --no-cache jq
+RUN apk add --no-cache jq docker
 
 COPY run.sh /
 
